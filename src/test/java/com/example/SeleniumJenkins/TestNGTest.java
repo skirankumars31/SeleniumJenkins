@@ -29,7 +29,7 @@ public class TestNGTest {
 
 	@Test
 	public void f() {
-		driver = eyes.open(driver, "Applitools", "Test Web Page", new RectangleSize(1024, 768));
+		driver = eyes.open(driver, "Applitools", "Test Applitools with Selenium", new RectangleSize(1024, 768));
 		driver.get("http://www.guru99.com/selenium-tutorial.html");
 		String title = driver.getTitle();
 		eyes.checkWindow("Free Selenium Tutorials");
