@@ -1,6 +1,10 @@
 package com.example.SeleniumJenkins;
 
 import org.testng.annotations.Test;
+
+import com.applitools.eyes.Eyes;
+import com.applitools.eyes.RectangleSize;
+
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
@@ -20,22 +24,28 @@ public class TestNGTest {
 	public static final String USERNAME = "skirankumars";
 	public static final String ACCESS_KEY = "aed6d35f-ec8d-4f82-a641-4a095e32abf0";
 	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-	private RemoteWebDriver driver;
+	private WebDriver driver;
+	Eyes eyes = new Eyes();
 
 	@Test
 	public void f() {
+		driver = eyes.open(driver, "Applitools", "Test Web Page", new RectangleSize(1024, 768));
 		driver.get("http://www.guru99.com/selenium-tutorial.html");
 		String title = driver.getTitle();
+		eyes.checkWindow("Free Selenium Tutorials");
 		AssertJUnit.assertTrue(title.contains("Free Selenium Tutorials"));
+		eyes.close();
 	}
 
 	@BeforeTest
 	public void beforeTest() {
+		// This is your api key, make sure you use it in all your tests.
+		eyes.setApiKey("YNciQrgazqvTusy2k99Zf2u8YIBp2lZngPVqxCWQYtCs110");
 		DesiredCapabilities caps = DesiredCapabilities.firefox();
 		caps.setCapability("platform", "Windows 7");
 		caps.setCapability("version", "42");
 		try {
-			this.driver = new RemoteWebDriver(new URL(URL),caps);
+			 driver = new RemoteWebDriver(new URL(URL),caps);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

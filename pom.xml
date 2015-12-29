@@ -32,6 +32,11 @@
 			<version>6.9.10</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.applitools</groupId>
+			<artifactId>eyes-selenium-java</artifactId>
+			<version>RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
